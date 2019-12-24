@@ -9,6 +9,7 @@ from . import service_headers
 COUNT_PRODUCTS_SHOP = 5
 
 SHOPS_PRODUCT_LIST_CLASSES = {
+  1: 'catalog__main-content',
   2: 'product-tile_container',
   4: 'category-products',
   5: 'listing-container'
@@ -34,6 +35,8 @@ def get_category(shop_id, html):
 
 
 def parse_product_list(shop_id, content, host):
+  if shop_id == 1:
+    return get_product_list_shop_1(shop_id, content, host)
   if shop_id == 2:
     return get_product_list_shop_2(shop_id, content, host)
   if shop_id == 4:
@@ -118,6 +121,31 @@ def get_product_list_shop_2(shop_id, content, host):
   except ValueError:
     return None
 
+def get_product_list_shop_1(shop_id, content, host):
+  try:
+    grid_list = content.find_all('div', class_='catalog-item product-card__')
+    products = []
+
+    for item in grid_list[:COUNT_PRODUCTS_SHOP]:
+      img_attrs = item.find('img', class_='product-img').attrs
+      img = img_attrs['data-src']
+      title_link = item.find('div', class_='title-itm')
+      title = item.find('h5').text.strip()
+      price = item.find('span', class_='price-number').text.strip()
+      _url_attr = item.find('a', class_='card-product-link').attrs
+      _url = _url_attr['href']
+      product = {
+        'shop_id': shop_id,
+        'img':   img,
+        'title': title,
+        'price': price,
+        'url': host + _url
+      }
+
+      products.append(product)
+    return products
+  except ValueError:
+    return None
 
 def parse_shop(shop_id, url, host):
   try:

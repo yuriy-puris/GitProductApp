@@ -31,7 +31,7 @@ class AddressView(APIView):
 class CoordinatesView(APIView):
 
     def get(self, request, format=None):
-        service_coordinate.parse_coordinates()
+        # service_coordinate.parse_coordinates()
 
         queryset = Coordinates.objects.all()
         serializer_class = CoordinatesSerializer(queryset, many=True)

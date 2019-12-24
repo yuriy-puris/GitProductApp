@@ -87,7 +87,6 @@ def parser_address_foxtrot():
 
 
 
-
 # def parser_address_psshop():
 #     url = 'https://pcshop.ua/contact'
 

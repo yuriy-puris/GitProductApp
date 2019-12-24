@@ -4,7 +4,7 @@ from haversine import haversine, Unit
 from ..models import Address, Coordinates
 
 # HOW MUCH NEAREST LOCATIONS TO SHOW CLIENT
-NEAREST_LOCATION = 10
+NEAREST_LOCATION = 20
 
 def parse_location(Location):
     coordinates_list_km = []
