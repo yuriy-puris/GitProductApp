@@ -12,7 +12,7 @@ django-cors-headers==3.2.0
 djangorestframework==3.11.0
 haversine==2.1.2
 idna==2.8
-lxml==4.4.2
+lxml==4.6.3
 multidict==4.7.1
 pygeocoder==1.2.5
 pytz==2019.3
